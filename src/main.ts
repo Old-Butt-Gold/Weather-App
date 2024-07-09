@@ -15,15 +15,17 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             <h1 class="temp">0&#176;</h1>
             <div class="city-time">
                 <h1 class="name">CITY</h1>
-                <small>
+                <div>
                     <span class="time">TIME</span> -
                     <span class="date">DATE</span>
-                </small>
+                </div>
             </div>
             <div class="weather">
                 <img class="icon" alt="icon" width="50" height="50"/>
                 <span class="condition">Weather-condition</span>
             </div>
+        </div>
+        <div class="forecast">
         </div>
     </div>
     <div class="panel">
@@ -72,6 +74,7 @@ async function fetchWeatherData(city: string) {
         const data = await response.json();
         console.log(data);
         updateWeatherData(data);
+        updateForecast(data.forecast.forecastday);
         app.style.opacity = '1';
     } catch (error: any) {
         showDialog(error.message || 'City not found, please try again');
@@ -101,6 +104,24 @@ function updateWeatherData(data: any) {
     windOutput.innerHTML = `${data.current.wind_kph}km/h`;
 
     setBackgroundAndButton(data);
+}
+
+function updateForecast(forecastDays: any) {
+    const forecastContainer = document.querySelector<HTMLDivElement>('.forecast')!;
+    forecastContainer.innerHTML = '';
+
+    forecastDays.forEach((day: any) => {
+        const dayName = dayOfTheWeek(new Date(day.date).getDate(), new Date(day.date).getMonth() + 1, new Date(day.date).getFullYear());
+        const forecastCard = `
+            <div class="forecast-card">
+                <h4>${dayName}</h4>
+                <img src="${day.day.condition.icon}" alt="weather icon" />
+                <div class="forecast-temp">${day.day.maxtemp_c}&#176; / ${day.day.mintemp_c}&#176;</div>
+                <div class="forecast-condition">${day.day.condition.text}</div>
+            </div>
+        `;
+        forecastContainer.innerHTML += forecastCard;
+    });
 }
 
 function setBackgroundAndButton(data: any) {
