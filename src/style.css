@@ -45,7 +45,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
-    padding: 2em;
+    padding: 1em 1em 2em 2em;
 }
 
 .weather-app .container .main-weather-info {
@@ -78,11 +78,10 @@ body {
     height: 100%;
     top: 0;
     right: 0;
-    background: rgba(110, 110, 110, 0.25);
+    background: rgba(110, 110, 110, 0.15);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
     z-index: 1;
     padding: 3em 2em;
     overflow-y: auto;
@@ -163,24 +162,20 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 1em;
-    margin-left: 0.5em;
     margin-top: 1em;
-    background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 
 .weather-app .forecast-card {
     background: rgba(255, 255, 255, 0.25);
-    padding: 1em;
-    margin: 0.5em;
+    padding: 1.2em;
+    margin: 0.2em 3vw 0.2em 0.2em;
     border-radius: 10px;
     text-align: center;
 }
 
 .weather-app .forecast-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .weather-app .forecast-card img {
@@ -216,6 +211,10 @@ body {
     .weather-app .forecast {
         align-items: center;
         width: 100%;
+    }
+
+    .weather-app .forecast .forecast-card {
+        width: 24vw;
     }
 
     .weather-app .search {
