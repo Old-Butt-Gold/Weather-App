@@ -1,4 +1,11 @@
-export const weatherConditions: { [key: number]: { day: string, night: string, btnDay: string, btnNight: string } } = {
+export interface WeatherCondition {
+    day: string;
+    night: string;
+    btnDay: string;
+    btnNight: string;
+}
+
+export const weatherConditions: { [key: number]: WeatherCondition } = {
     1000: { day: 'clear.jpg', night: 'clear.jpg', btnDay: '#e5ba92', btnNight: '#181e27' },
     1003: { day: 'partly_cloudy.jpg', night: 'partly_cloudy.jpg', btnDay: '#fa6d1b', btnNight: '#181e27' },
     1006: { day: 'cloudy.jpg', night: 'cloudy.jpg', btnDay: '#fa6d1b', btnNight: '#181e27' },

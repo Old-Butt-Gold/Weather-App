@@ -1,5 +1,5 @@
 import './style.css';
-import { weatherConditions } from "./WeatherConditions.ts";
+import { weatherConditions, WeatherCondition } from "./WeatherConditions.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="weather-app">
@@ -24,6 +24,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
                     <img class="icon" alt="icon" width="50" height="50"/>
                     <span class="condition">Weather-condition</span>
                 </div>
+                <!--<div class="forecast-cards"></div>-->
             </div>
         </div>
         <div class="panel">
@@ -72,7 +73,7 @@ async function fetchWeatherData(city: string) {
         const data = await response.json();
         updateWeatherData(data);
         app.style.opacity = '1';
-    } catch (error) {
+    } catch (error: any) {
         showDialog(error.message || 'City not found, please try again');
         app.style.opacity = '1';
     }
@@ -105,10 +106,9 @@ function updateWeatherData(data: any) {
 function setBackgroundAndButton(data: any) {
     const timeOfDay = data.current.is_day ? 'day' : 'night';
     const code = data.current.condition.code;
-    const weatherCondition = weatherConditions[code] || weatherConditions[1000];
+    const weatherCondition : WeatherCondition = weatherConditions[code]!;
 
-    app.style.backgroundImage = `url(./${timeOfDay}/${weatherCondition[timeOfDay]})`;
-    btn.style.background = weatherCondition[`btn${timeOfDay.charAt(0).toUpperCase() + timeOfDay.slice(1)}`];
+    btn.style.background = timeOfDay === 'day' ? weatherCondition.btnDay : weatherCondition.btnNight;
 
     app.style.opacity = '1';
 }
