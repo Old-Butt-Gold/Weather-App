@@ -108,6 +108,7 @@ function setBackgroundAndButton(data: any) {
     const code = data.current.condition.code;
     const weatherCondition : WeatherCondition = weatherConditions[code]!;
 
+    app.style.backgroundImage = `url(./${timeOfDay}/${weatherCondition[timeOfDay]})`;
     btn.style.background = timeOfDay === 'day' ? weatherCondition.btnDay : weatherCondition.btnNight;
 
     app.style.opacity = '1';
