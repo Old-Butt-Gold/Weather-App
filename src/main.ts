@@ -67,7 +67,7 @@ function dayOfTheWeek(day: number, month: number, year: number): string {
 async function fetchWeatherData(city: string) {
     const apiKey = 'a92b8b1a6077445fb9c163537240903';
     try {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no`);
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no`);
         if (!response.ok) throw new Error('City not found');
 
         const data = await response.json();
