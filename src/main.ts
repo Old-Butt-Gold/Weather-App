@@ -3,60 +3,59 @@ import { weatherConditions, WeatherCondition } from "./WeatherConditions.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="weather-app">
-        <div id="alert-dialog" class="dialog">
-            <div class="dialog-content">
-                <p id="dialog-message"></p>
-                <button id="dialog-close">Close</button>
-            </div>
-        </div>
-        <div class="container">
-            <h3 class="brand">The Weather</h3>
-            <div>
-                <h1 class="temp">0&#176;</h1>
-                <div class="city-time">
-                    <h1 class="name">CITY</h1>
-                    <small>
-                        <span class="time">TIME</span> -
-                        <span class="date">DATE</span>
-                    </small>
-                </div>
-                <div class="weather">
-                    <img class="icon" alt="icon" width="50" height="50"/>
-                    <span class="condition">Weather-condition</span>
-                </div>
-                <!--<div class="forecast-cards"></div>-->
-            </div>
-        </div>
-        <div class="panel">
-            <form id="locationInput">
-                <input type="text" class="search" placeholder="Search Location..."/>
-                <button type="submit" class="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-            <ul class="cities">
-                <li class="city">New York</li>
-                <li class="city">Minsk</li>
-                <li class="city">Moscow</li>
-                <li class="city">Paris</li>
-            </ul>
-            <ul class="details">
-                <h4>Weather Details</h4>
-                <li>
-                    <span>Cloudy</span>
-                    <span class="cloud">?%</span>
-                </li>
-                <li>
-                    <span>Humidity</span>
-                    <span class="humidity">?%</span>
-                </li>
-                <li>
-                    <span>Wind</span>
-                    <span class="wind">?km/h</span>
-                </li>
-            </ul>
+    <div id="alert-dialog" class="dialog">
+        <div class="dialog-content">
+            <p id="dialog-message"></p>
+            <button id="dialog-close">Close</button>
         </div>
     </div>
+    <div class="container">
+        <h3 class="brand">The Weather</h3>
+        <div class="main-weather-info">
+            <h1 class="temp">0&#176;</h1>
+            <div class="city-time">
+                <h1 class="name">CITY</h1>
+                <small>
+                    <span class="time">TIME</span> -
+                    <span class="date">DATE</span>
+                </small>
+            </div>
+            <div class="weather">
+                <img class="icon" alt="icon" width="50" height="50"/>
+                <span class="condition">Weather-condition</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <form id="locationInput">
+            <input type="text" class="search" placeholder="Search Location..."/>
+            <button type="submit" class="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <ul class="cities">
+            <li class="city">New York</li>
+            <li class="city">Minsk</li>
+            <li class="city">Moscow</li>
+            <li class="city">Paris</li>
+        </ul>
+        <ul class="details">
+            <h4>Weather Details</h4>
+            <li>
+                <span>Cloudy</span>
+                <span class="cloud">?%</span>
+            </li>
+            <li>
+                <span>Humidity</span>
+                <span class="humidity">?%</span>
+            </li>
+            <li>
+                <span>Wind</span>
+                <span class="wind">?km/h</span>
+            </li>
+        </ul>
+    </div>
+</div>
 `;
 
 function dayOfTheWeek(day: number, month: number, year: number): string {
@@ -71,6 +70,7 @@ async function fetchWeatherData(city: string) {
         if (!response.ok) throw new Error('City not found');
 
         const data = await response.json();
+        console.log(data);
         updateWeatherData(data);
         app.style.opacity = '1';
     } catch (error: any) {

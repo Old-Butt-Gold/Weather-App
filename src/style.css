@@ -20,8 +20,8 @@ body {
     background-size: cover;
     color: #fff;
     position: relative;
-    transition: 500ms;
-    opacity: 1; /* change to 0 when is done*/
+    transition: 500ms ease-in-out;
+    opacity: 1;
 }
 
 .weather-app::before {
@@ -45,10 +45,10 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
-    padding: 2em 3em 4em 3em;
+    padding: 2em;
 }
 
-.weather-app .container > div {
+.weather-app .container .main-weather-info {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +64,7 @@ body {
 }
 
 .weather-app .temp {
-    font-size: 7em;
+    font-size: 5.5em;
     margin: 0;
 }
 
@@ -75,7 +75,7 @@ body {
 
 .weather-app .panel {
     position: absolute;
-    width: 40%;
+    width: 35%;
     height: 100%;
     top: 0;
     right: 0;
@@ -118,7 +118,7 @@ body {
     border: none;
     border-bottom: 1px #ccc solid;
     padding: 0 1em 0.5em 0;
-    width: 90%;
+    width: 75%;
     color: #fff;
     font-size: 1.1em;
 }
@@ -132,8 +132,7 @@ body {
 }
 
 .weather-app .panel ul {
-    padding: 0 0 1em 0;
-    margin: 2em 0;
+    padding: 0 0 0.48em 0;
     border-bottom: 1px #ccc solid;
 }
 
@@ -161,7 +160,7 @@ body {
     align-items: center;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 820px) {
     .weather-app .panel, .weather-app .container {
         position: relative;
         width: 100%;
@@ -170,6 +169,14 @@ body {
 
     .weather-app .container .brand {
         align-self: center;
+    }
+
+    .weather-app .container .main-weather-info {
+        width: 100%;
+    }
+
+    .weather-app .search {
+        width: 90%;
     }
 }
 
